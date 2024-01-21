@@ -1,1 +1,8 @@
-<p>home works!</p>
+<div class="wrap">
+<p-card header="Home">
+    <p class="m-0">
+        <p-calendar [(ngModel)]="date" [inline]="true" cli dateFormat="yy-mm-dd" (onSelect)="execDate($event)"></p-calendar>
+    </p>
+</p-card>
+
+</div>

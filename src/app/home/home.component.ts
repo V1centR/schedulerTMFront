@@ -7,4 +7,16 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  date: Date[] | undefined;
+
+  ngOnInit() {
+    
+  }
+
+  execDate(event:any){
+
+    console.log("SELECTED DATE::: " + this.date);
+
+  }
+
 }

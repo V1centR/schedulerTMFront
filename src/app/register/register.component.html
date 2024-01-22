@@ -1,4 +1,4 @@
-<div class="wrap">
+<div class="wrap" style="margin-bottom: 120px;">
     <p-toast></p-toast>
     <p-card header="Register">       
         <form [formGroup]="registerMoney">
@@ -49,5 +49,9 @@
             </table>
         </form>
 
+<hr>
+
+<app-transactions [data]="transactionData"></app-transactions>
+
 </p-card>
-</div>        
+</div>

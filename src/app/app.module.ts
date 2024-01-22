@@ -24,6 +24,9 @@ import { NgxCurrencyDirective } from "ngx-currency";
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToastModule } from 'primeng/toast';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
 
 
 
@@ -34,7 +37,8 @@ registerLocaleData(ptBr);
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    RegisterComponent
+    RegisterComponent,
+    TransactionsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,9 @@ registerLocaleData(ptBr);
     ReactiveFormsModule,
     NgxMaskDirective, NgxMaskPipe,
     ProgressSpinnerModule,
-    ToastModule
+    ToastModule,
+    TableModule,
+    TagModule
     
     
     

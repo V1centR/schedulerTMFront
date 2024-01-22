@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Message, MessageService } from "primeng/api"; 
-import { delay } from 'rxjs';
+import { Transactions } from '../model/transactions';
 
 @Component({
   selector: 'app-register',
@@ -20,18 +20,14 @@ export class RegisterComponent {
   registerMoney: FormGroup;
   isDisabled:boolean = false;
   spinnerProccess:boolean = false;
-  dateMessage:string;
-  dateMessageShowHide:boolean = false;
-
-
+  itemsTest:any;
+  transactionData:Transactions[] = [];
 
   constructor(private fb: FormBuilder,private messageService: MessageService) {} 
 
   ngOnInit() {
 
-    //let customPatterns = { '0': { pattern: new RegExp('\[a-zA-Z\]')} };
-
-    this.registerMoney = this.fb.group({
+      this.registerMoney = this.fb.group({
       valueRegister: new FormControl('-',Validators.required),
       dateRegister: new FormControl('',Validators.required),
       fromAccount: new FormControl('',Validators.required),
@@ -39,10 +35,55 @@ export class RegisterComponent {
       
     });
 
+   
 
-    this.dateMessage = "Selecione uma data.";
+    for(let i = 1; i < 10;i++){
+
+      const fromAccount = this.generateRandomName();
+      const toAccount = this.generateRandomName();
+      const randomMoney = this.generateRandomMoney();
+
+      let transActionItem = new Transactions;
+
+      transActionItem.id = i;
+      transActionItem.dataRegistro ="22/01/2024";
+      transActionItem.dataTransferencia = "29/01/2024";
+      transActionItem.ctaOrigem = fromAccount;
+      transActionItem.ctaDestino = toAccount;
+      transActionItem.valorTransferencia = randomMoney;
+      transActionItem.taxaAplicavel = "0%";
+      transActionItem.status = "AP";
+
+      this.transactionData.push(transActionItem);
+    }
+
+  
     
   }
+
+
+  generateRandomName(): string {
+    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let randomName = '';
+  
+    for (let i = 0; i < 10; i++) {
+      const randomIndex = Math.floor(Math.random() * alphabet.length);
+      randomName += alphabet.charAt(randomIndex);
+    }
+  
+    return randomName;
+  }
+
+  generateRandomMoney(): string {
+    const min = 9.99;
+    const max = 9999.99;
+    const randomValue = Math.random() * (max - min) + min;
+    const roundedValue = Math.round(randomValue * 100) / 100;
+    const formattedValue = roundedValue.toFixed(2);
+    return formattedValue;
+  }
+  
+
 
   async onSubmit(){
 
@@ -52,10 +93,6 @@ export class RegisterComponent {
 
     console.log("VALUE::: " + this.registerMoney.value.valueRegister);
 
-    if(this.registerMoney.value.dateRegister == ''){
-      this.dateMessageShowHide = true 
-    }
-
     this.registerMoney.disable();
     this.spinnerProccess = true;
 
@@ -64,11 +101,9 @@ export class RegisterComponent {
     this.registerMoney.enable();
     this.registerMoney.reset();
     this.spinnerProccess = false;
-    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Transferência agendada com sucesso.' });
-
+    this.messageService.add({ severity: 'success', summary: 'OK', detail: 'Transferência agendada com sucesso.' });
 
   }
-
 
   checkInputCurrency(event:any){
 
@@ -79,10 +114,4 @@ export class RegisterComponent {
     }
   }
 
-  
-
 }
-function sleep(arg0: number) {
-  throw new Error('Function not implemented.');
-}
-

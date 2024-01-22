@@ -1,0 +1,53 @@
+<div class="wrap">
+    <p-toast></p-toast>
+    <p-card header="Register">       
+        <form [formGroup]="registerMoney">
+        <table border="0">
+            <tbody>
+            <tr>
+            <td>Data: </td>
+            <td> <div style="margin-top: 10px; margin-bottom: 10px;">
+                <p-calendar formControlName="dateRegister" dateFormat="dd/mm/yy" [minDate]="minimumDate" [iconDisplay]="'input'" [showIcon]="true"></p-calendar>
+            </div></td>
+            <td colspan="2">
+                <!--
+                <div class="notify-form">
+                <p-message severity="info" text="{{dateMessage}}"></p-message>
+                </div>
+                -->
+            </td>
+            </tr>
+
+            <tr>
+            <td>Valor: </td>
+            <td><div style="margin-top: 10px; margin-bottom: 10px;">
+                <input pInputText style="width: 100%;" required (blur)="checkInputCurrency($event)" formControlName="valueRegister" placeholder="R$ 0,00" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  />
+            
+            </div></td>
+            <td colspan="2"></td>
+            </tr>
+            
+            <tr>
+            <td>De:</td>
+            <td><div class="accountsInputStyle"><input type="text" mask="A*" required maxlength="10" pInputText formControlName="fromAccount" /></div></td>
+            <td>Para: </td>
+            <td><div class="accountsInputStyle"><input type="text" mask="A*" required maxlength="10" pInputText formControlName="toAccount" /></div></td>
+            </tr>
+
+            <tr>
+                <td>&nbsp;</td>
+                <td><p-button type="submit" (click)="onSubmit()" label="Registrar" icon="pi pi-check" [disabled]="!registerMoney.valid" iconPos="right"></p-button>
+                    <p-progressSpinner strokeWidth="2" styleClass="w-3rem h-3rem" *ngIf="spinnerProccess"></p-progressSpinner></td>
+                <td>
+                    
+                </td>
+            </tr>
+
+
+
+            </tbody>
+            </table>
+        </form>
+
+</p-card>
+</div>        

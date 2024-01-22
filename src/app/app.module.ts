@@ -15,7 +15,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { registerLocaleData } from '@angular/common';
 import ptBr from '@angular/common/locales/pt';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
+import { ButtonModule } from 'primeng/button';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from "primeng/message";
+import { NgxCurrencyDirective } from "ngx-currency";
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ToastModule } from 'primeng/toast';
+
+
 
 registerLocaleData(ptBr);
 @NgModule({
@@ -23,7 +33,8 @@ registerLocaleData(ptBr);
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -34,10 +45,21 @@ registerLocaleData(ptBr);
     InputTextModule,
     CalendarModule,
     FormsModule,
+    ButtonModule,
+    MessagesModule,
+    MessageModule,
+    NgxCurrencyDirective,
+    ReactiveFormsModule,
+    NgxMaskDirective, NgxMaskPipe,
+    ProgressSpinnerModule,
+    ToastModule
+    
+    
     
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
+    provideNgxMask(),
   ],
   bootstrap: [AppComponent]
 })

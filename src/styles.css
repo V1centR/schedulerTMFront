@@ -11,3 +11,23 @@ body{ background-color: #f5f5f5; margin: 0px;}
       
     }
   }
+.notify-form{
+
+    margin: 0 10px 0 10px ;   
+
+}
+
+.accountsInputStyle{
+    margin-top: 10px; 
+    margin-bottom: 10px;
+}
+
+.accountsInputStyle input{
+    text-transform: uppercase;
+    width: 100%;
+}
+
+/*
+ border: 1px solid #ff0000;
+
+*/

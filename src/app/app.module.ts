@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 //PrimeNG components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -58,7 +59,8 @@ registerLocaleData(ptBr);
     ProgressSpinnerModule,
     ToastModule,
     TableModule,
-    TagModule
+    TagModule,
+    HttpClientModule
     
     
     

@@ -1,8 +1,25 @@
-<div class="wrap">
+<div class="wrap" style="margin-bottom: 120px;">
 <p-card header="Home">
-    <p class="m-0">
-        <p-calendar [(ngModel)]="date" [inline]="true" cli dateFormat="yy-mm-dd" (onSelect)="execDate($event)"></p-calendar>
-    </p>
+
+    <div style="margin-bottom: 20px;">
+    <table border="0">
+        <tbody>
+        <tr>
+        <td>Data inicial</td>
+        <td>Data Final</td>
+        <td>&nbsp;</td>
+        </tr>
+        <tr>
+        <td><p-calendar [(ngModel)]="startDate" dateFormat="dd/mm/yy" [iconDisplay]="'input'" [showIcon]="true"></p-calendar></td>
+        <td><p-calendar [(ngModel)]="endDate" dateFormat="dd/mm/yy" [iconDisplay]="'input'" [showIcon]="true"></p-calendar></td>
+        <td>&nbsp;<p-button type="submit" label="Buscar" icon="pi pi-search" iconPos="right"></p-button></td>
+        </tr>
+        </tbody>
+        </table>
+    </div>
+
+        <app-transactions [data]="transactionData"></app-transactions>
+
 </p-card>
 
 </div>

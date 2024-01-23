@@ -23,5 +23,9 @@ export class AgendamentoService {
         return this.http.get<Agendamento[]>(`${this.LC_API}/range/${startDate}/${endDate}`);
     }
 
+    postAgendamento(dataItem:Agendamento){
+        return this.http.post(`${this.LC_API}`,dataItem);
+    }
+
 
 }

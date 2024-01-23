@@ -1,37 +1,31 @@
 <div class="wrap" style="margin-bottom: 120px;">
     <p-toast></p-toast>
-    <p-card header="Register">       
+    <p-card header="Registrar operação">       
         <form [formGroup]="registerMoney">
         <table border="0">
             <tbody>
             <tr>
-            <td>Data: </td>
+            <td>Agendar para: </td>
             <td> <div style="margin-top: 10px; margin-bottom: 10px;">
-                <p-calendar formControlName="dateRegister" dateFormat="dd/mm/yy" [minDate]="minimumDate" [iconDisplay]="'input'" [showIcon]="true"></p-calendar>
+                <p-calendar formControlName="dateTransfer" dateFormat="dd/mm/yy" [minDate]="minimumDate" [iconDisplay]="'input'" [showIcon]="true"></p-calendar>
             </div></td>
-            <td colspan="2">
-                <!--
-                <div class="notify-form">
-                <p-message severity="info" text="{{dateMessage}}"></p-message>
-                </div>
-                -->
-            </td>
+            <td colspan="2"></td>
             </tr>
 
             <tr>
             <td>Valor: </td>
             <td><div style="margin-top: 10px; margin-bottom: 10px;">
-                <input pInputText style="width: 100%;" required (blur)="checkInputCurrency($event)" formControlName="valueRegister" placeholder="R$ 0,00" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  />
+                <input pInputText style="width: 100%;" required (blur)="checkInputCurrency($event)" formControlName="valorTransferencia" placeholder="R$ 0,00" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  />
             
             </div></td>
             <td colspan="2"></td>
             </tr>
             
             <tr>
-            <td>De:</td>
-            <td><div class="accountsInputStyle"><input type="text" mask="A*" required maxlength="10" pInputText formControlName="fromAccount" /></div></td>
-            <td>Para: </td>
-            <td><div class="accountsInputStyle"><input type="text" mask="A*" required maxlength="10" pInputText formControlName="toAccount" /></div></td>
+            <td>CTA Origem:</td>
+            <td><div class="accountsInputStyle"><input type="text" mask="A*" required maxlength="10" pInputText formControlName="ctaOrigem" /></div></td>
+            <td>CTA Destino: </td>
+            <td><div class="accountsInputStyle"><input type="text" mask="A*" required maxlength="10" pInputText formControlName="ctaDestino" /></div></td>
             </tr>
 
             <tr>
@@ -42,9 +36,6 @@
                     
                 </td>
             </tr>
-
-
-
             </tbody>
             </table>
         </form>

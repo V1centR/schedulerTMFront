@@ -18,7 +18,7 @@
             <td>{{ data.dataTransferencia }}</td>
             <td>{{ data.ctaOrigem }}</td>
             <td>{{ data.ctaDestino }}</td>
-            <td>{{ data.valorTransferencia }}</td>
+            <td>{{data.valorTransferencia | currency : 'BRL'}}</td>
             <td>{{ data.taxaAplicavel }}</td>
             <td>
                 <span *ngIf=" data.status == 'OK'"><p-tag severity="success" value="OK"></p-tag></span>

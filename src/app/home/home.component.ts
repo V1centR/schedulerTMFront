@@ -39,14 +39,13 @@ export class HomeComponent {
       let endDate = this.formatDate(this.endDate);
       this.transactionData = [];
 
-      this.agendamentoService.getByDateRange(startDate,endDate).subscribe({next: (data) => {
+    this.agendamentoService.getByDateRange(startDate,endDate).subscribe({next: (data) => {
         
         data.forEach(item => {          
           this.transactionData.push(item);
         })
       
       },error: (e) => {
-        console.log(e);
         this.messages = [{ severity: 'error', summary: 'ERRO', detail: 'Um erro de processamento ocorreu, tente novamente: ' + e.message }];
 
       }});

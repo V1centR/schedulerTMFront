@@ -15,5 +15,13 @@ export class AgendamentoService {
         return this.http.get<Agendamento[]>(`${this.LC_API}/all`);
     }
 
+    getToday(){
+        return this.http.get<Agendamento[]>(`${this.LC_API}/today`);
+    }
+
+    getByDateRange(startDate:string,endDate:string){
+        return this.http.get<Agendamento[]>(`${this.LC_API}/range/${startDate}/${endDate}`);
+    }
+
 
 }

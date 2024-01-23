@@ -10,12 +10,15 @@
         <td>&nbsp;</td>
         </tr>
         <tr>
-        <td><p-calendar [(ngModel)]="startDate" dateFormat="dd/mm/yy" [iconDisplay]="'input'" [showIcon]="true"></p-calendar></td>
-        <td><p-calendar [(ngModel)]="endDate" dateFormat="dd/mm/yy" [iconDisplay]="'input'" [showIcon]="true"></p-calendar></td>
-        <td>&nbsp;<p-button type="submit" label="Buscar" icon="pi pi-search" iconPos="right"></p-button></td>
+        <td><p-calendar [(ngModel)]="startDate" dateFormat="dd-mm-yy" [iconDisplay]="'input'" [showIcon]="true"></p-calendar></td>
+        <td><p-calendar [(ngModel)]="endDate" dateFormat="dd-mm-yy" [iconDisplay]="'input'" [showIcon]="true"></p-calendar></td>
+        <td>&nbsp;<p-button type="submit" (click)="submitSerach()" label="Buscar" icon="pi pi-search" iconPos="right"></p-button>
+            <p-progressSpinner strokeWidth="2" styleClass="w-3rem h-3rem" *ngIf="spinnerProccess"></p-progressSpinner>
+        </td>
         </tr>
         </tbody>
         </table>
+        <p-messages [(value)]="messages" [enableService]="false" [closable]="false"></p-messages>
     </div>
 
         <app-transactions [data]="transactionData"></app-transactions>

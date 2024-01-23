@@ -36,20 +36,17 @@ export class RegisterComponent {
     });
 
     this.getAgendamentos();
-    }
+  }
 
 
 
   getAgendamentos(){
-
-    this.agendamentoService.getAll().subscribe(data => {
-
+    this.agendamentoService.getToday().subscribe(data => {
       data.forEach(item => {
         this.transactionData.push(item);
       });
     });
   }
-  
 
 
   async onSubmit(){

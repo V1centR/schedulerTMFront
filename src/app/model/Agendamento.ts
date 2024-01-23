@@ -1,4 +1,4 @@
-export class Transactions {
+export class Agendamento {
 
         id:number
         dataRegistro:string

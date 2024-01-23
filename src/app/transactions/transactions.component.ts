@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Transactions } from '../model/transactions';
+import { Agendamento } from '../model/Agendamento';
 
 @Component({
   selector: 'app-transactions',
@@ -8,13 +8,9 @@ import { Transactions } from '../model/transactions';
 })
 export class TransactionsComponent {
 
-  @Input() data: Transactions[] = [];
+  @Input() data: Agendamento[] = [];
 
   ngOnInit() {
-
-    console.log("DATA INPUT ### ");
-    console.log(this.data);
-
   }
 
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Agendamento } from '../model/Agendamento';
+import { AgendamentoService } from '../service/agendamento-service';
 
 @Component({
   selector: 'app-home',
@@ -7,16 +9,25 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  date: Date[] | undefined;
+  startDate: Date[] | undefined;
+  endDate: Date[] | undefined;
+
+  transactionData:Agendamento[] = [];
+
+  constructor(private agendamentoService: AgendamentoService) {} 
 
   ngOnInit() {
+
+    this.getAgendamentos();
     
   }
 
-  execDate(event:any){
-
-    console.log("SELECTED DATE::: " + this.date);
-
+  getAgendamentos(){
+    this.agendamentoService.getAll().subscribe(data => {
+      data.forEach(item => {
+        this.transactionData.push(item);
+      });
+    });
   }
 
 }

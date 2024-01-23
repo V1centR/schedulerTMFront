@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Message, MessageService } from "primeng/api"; 
-import { Transactions } from '../model/transactions';
+import { Message, MessageService } from "primeng/api";
+import { AgendamentoService } from '../service/agendamento-service';
+import { Agendamento } from '../model/Agendamento';
 
 @Component({
   selector: 'app-register',
@@ -16,14 +17,13 @@ export class RegisterComponent {
   message:any;
   gfg: Message[];
   minimumDate = new Date();
-  valueRegister:any;
   registerMoney: FormGroup;
-  isDisabled:boolean = false;
   spinnerProccess:boolean = false;
-  itemsTest:any;
-  transactionData:Transactions[] = [];
+  transactionData:Agendamento[] = [];
 
-  constructor(private fb: FormBuilder,private messageService: MessageService) {} 
+  insertStatements:String[] = [];
+
+  constructor(private fb: FormBuilder,private messageService: MessageService,private agendamentoService: AgendamentoService) {} 
 
   ngOnInit() {
 
@@ -35,52 +35,19 @@ export class RegisterComponent {
       
     });
 
-   
-
-    for(let i = 1; i < 10;i++){
-
-      const fromAccount = this.generateRandomName();
-      const toAccount = this.generateRandomName();
-      const randomMoney = this.generateRandomMoney();
-
-      let transActionItem = new Transactions;
-
-      transActionItem.id = i;
-      transActionItem.dataRegistro ="22/01/2024";
-      transActionItem.dataTransferencia = "29/01/2024";
-      transActionItem.ctaOrigem = fromAccount;
-      transActionItem.ctaDestino = toAccount;
-      transActionItem.valorTransferencia = randomMoney;
-      transActionItem.taxaAplicavel = "0%";
-      transActionItem.status = "AP";
-
-      this.transactionData.push(transActionItem);
+    this.getAgendamentos();
     }
 
-  
-    
-  }
 
 
-  generateRandomName(): string {
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-    let randomName = '';
-  
-    for (let i = 0; i < 10; i++) {
-      const randomIndex = Math.floor(Math.random() * alphabet.length);
-      randomName += alphabet.charAt(randomIndex);
-    }
-  
-    return randomName;
-  }
+  getAgendamentos(){
 
-  generateRandomMoney(): string {
-    const min = 9.99;
-    const max = 9999.99;
-    const randomValue = Math.random() * (max - min) + min;
-    const roundedValue = Math.round(randomValue * 100) / 100;
-    const formattedValue = roundedValue.toFixed(2);
-    return formattedValue;
+    this.agendamentoService.getAll().subscribe(data => {
+
+      data.forEach(item => {
+        this.transactionData.push(item);
+      });
+    });
   }
   
 

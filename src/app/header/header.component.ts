@@ -16,7 +16,7 @@ export class HeaderComponent {
         { label: 'Registrar', icon: 'pi pi-fw pi-calendar',routerLink:'/register' },
         { label: 'Graphics', icon: 'pi pi-fw pi-pencil',routerLink:'/graphics' },
         { label: 'Reports', icon: 'pi pi-fw pi-file' },
-        { label: 'Help!', icon: 'pi pi-fw pi-cog' }
+        { label: 'Help!', icon: 'pi pi-fw pi-cog',routerLink:'/info' }
     ];
 }
 

@@ -28,6 +28,7 @@ import { ToastModule } from 'primeng/toast';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
+import { InfoHelpComponent } from './info-help/info-help.component';
 
 
 
@@ -39,7 +40,8 @@ registerLocaleData(ptBr);
     HeaderComponent,
     FooterComponent,
     RegisterComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    InfoHelpComponent
   ],
   imports: [
     BrowserModule,

@@ -14,6 +14,7 @@ export class HomeComponent {
   endDate= new Date();
   spinnerProccess:boolean = false;
   messages: Message[] | undefined;
+  dataOK:boolean = false;
 
   transactionData:Agendamento[] = [];
 
@@ -28,6 +29,7 @@ export class HomeComponent {
   submitSerach(){    
 
     this.spinnerProccess = true;
+    this.messages = [];
 
     if(this.startDate == undefined || this.endDate == undefined ){
       this.transactionData = [];
@@ -41,9 +43,7 @@ export class HomeComponent {
 
     this.agendamentoService.getByDateRange(startDate,endDate).subscribe({next: (data) => {
         
-        data.forEach(item => {          
-          this.transactionData.push(item);
-        })
+      this.behaviorMessages(data);
       
       },error: (e) => {
         this.messages = [{ severity: 'error', summary: 'ERRO', detail: 'Um erro de processamento ocorreu, tente novamente: ' + e.message }];
@@ -57,15 +57,30 @@ export class HomeComponent {
 
   getAgendamentos(){
     this.agendamentoService.getToday().subscribe({next: data => {
-      data.forEach(item => {
-        this.transactionData.push(item);
-      })
+
+     this.behaviorMessages(data);
+      
     }, error: (e) => {
-      console.log(e);
+      this.dataOK = false;
       this.messages = [{ severity: 'error', summary: 'ERRO', detail: 'Um erro de processamento ocorreu, tente novamente: ' + e.message }];       
     }});
+}
+
+behaviorMessages(data:Agendamento[]){
+
+  if(data.length == 0){
+    this.dataOK = false;
+    this.messages = [{ severity: 'info', summary: 'INFO', detail: 'Não há lançamentos para esta data' }]; 
+  } else {
+    data.forEach(item => {
+      this.transactionData.push(item);
+    });
+
+    this.messages = [];
+    this.dataOK = true;
   }
 
+}
 
 //TODO Move to ultils module
 padTo2Digits(num: number) {
@@ -81,16 +96,7 @@ formatDate(date: Date) {
     this.padTo2Digits(date.getMonth() + 1),
     date.getFullYear()
     ]
-    .join('-')
-    
-    /*+
-    ' ' +
-    [
-    this.padTo2Digits(date.getHours()),
-    this.padTo2Digits(date.getMinutes()),
-    this.padTo2Digits(date.getSeconds()),
-    ].join(':')*/
-  );
+    .join('-'));
 }
 
 }

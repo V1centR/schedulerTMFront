@@ -1,5 +1,7 @@
 body{ background-color: #f5f5f5; margin: 0px;}
-.wrap{margin-left: 50px; margin-right: 50px;}
+.wrap{margin-left: 50px; margin-right: 50px; margin-bottom: 120px;}
+.header-wrap{margin-left: 50px; margin-right: 50px;}
+.header-wrap h1 span{color: #64748b;}
 
 .page-footer {
     footer {

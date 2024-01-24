@@ -1,50 +1,54 @@
-<div class="wrap" style="margin-bottom: 120px;">
+<div class="wrap">
     <p-toast></p-toast>
-    <p-card header="Registrar operação">       
-        <form [formGroup]="registerMoney">
-        <table border="0">
-            <tbody>
-            <tr>
-            <td>Agendar para: </td>
-            <td> <div style="margin-top: 10px; margin-bottom: 10px;">
-                <p-calendar formControlName="dateTransfer" dateFormat="dd/mm/yy" [minDate]="minimumDate" [iconDisplay]="'input'" [showIcon]="true"></p-calendar>
-            </div></td>
-            <td colspan="2"></td>
-            </tr>
-
-            <tr>
-            <td>Valor: </td>
-            <td><div style="margin-top: 10px; margin-bottom: 10px;">
-                <input pInputText style="width: 100%;" required (blur)="checkInputCurrency($event)" formControlName="valorTransferencia" placeholder="R$ 0,00" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  />
-            
-            </div></td>
-            <td colspan="2"></td>
-            </tr>
-            
-            <tr>
-            <td>CTA Origem:</td>
-            <td><div class="accountsInputStyle"><input type="text" mask="A*" required maxlength="10" pInputText formControlName="ctaOrigem" /></div></td>
-            <td>CTA Destino: </td>
-            <td><div class="accountsInputStyle"><input type="text" mask="A*" required maxlength="10" pInputText formControlName="ctaDestino" /></div></td>
-            </tr>
-
-            <tr>
-                <td>&nbsp;</td>
-                <td><p-button type="submit" (click)="onSubmit()" label="Registrar" icon="pi pi-check" [disabled]="!registerMoney.valid" iconPos="right"></p-button>
-                    <p-progressSpinner strokeWidth="2" styleClass="w-3rem h-3rem" *ngIf="spinnerProccess"></p-progressSpinner></td>
-                <td>
-                    
-                </td>
-            </tr>
-            </tbody>
-            </table>
-        </form>
-
-<hr>
-
-<h4>Registros de hoje:</h4>
-
-<app-transactions [data]="transactionData"></app-transactions>
-
-</p-card>
-</div>
+    <p-card header="Registrar operação">
+       <form [formGroup]="registerMoney">
+          <table border="0">
+             <tbody>
+                <tr>
+                   <td>Agendar para: </td>
+                   <td>
+                      <div class="register-input">
+                         <p-calendar formControlName="dateTransfer" dateFormat="dd/mm/yy" [minDate]="minimumDate" [iconDisplay]="'input'" [showIcon]="true"></p-calendar>
+                      </div>
+                   </td>
+                   <td colspan="2"></td>
+                </tr>
+                <tr>
+                   <td>Valor: </td>
+                   <td>
+                      <div class="register-input">
+                         <input pInputText class="valueCurrency" required (blur)="applyTaxRate()"  formControlName="valorTransferencia" placeholder="R$ 0,00" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"  />
+                      </div>
+                   </td>
+                   <td colspan="2">&nbsp; taxa: +{{taxRateApply}}%</td>
+                </tr>
+                <tr>
+                   <td>CTA Origem:</td>
+                   <td>
+                      <div class="accountsInputStyle"><input type="text" mask="A*" required maxlength="10" pInputText formControlName="ctaOrigem" /></div>
+                   </td>
+                   <td>CTA Destino: </td>
+                   <td>
+                      <div class="accountsInputStyle"><input type="text" mask="A*" required maxlength="10" pInputText formControlName="ctaDestino" /></div>
+                   </td>
+                </tr>
+                <tr>
+                   <td>&nbsp;</td>
+                   <td>
+                      <p-button type="submit" (click)="onSubmit()" label="Registrar" icon="pi pi-check" [disabled]="!registerMoney.valid" iconPos="right"></p-button>
+                      <p-progressSpinner strokeWidth="2" styleClass="w-3rem h-3rem" *ngIf="spinnerProccess"></p-progressSpinner>
+                      <br>
+                   </td>
+                   <td></td>
+                </tr>
+             </tbody>
+          </table>
+       </form>
+       <hr>
+       <p-messages [(value)]="messages" [enableService]="false" [closable]="true"></p-messages>
+       <div *ngIf="dataOK">
+          <h4>Registros de hoje:</h4>
+          <app-transactions [data]="transactionData"></app-transactions>
+       </div>
+    </p-card>
+ </div>

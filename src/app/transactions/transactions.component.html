@@ -1,0 +1,36 @@
+<p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-striped">
+    <ng-template pTemplate="header">
+       <tr>
+          <th>ID</th>
+          <th>Registro</th>
+          <th>Transferência</th>
+          <th>Origem</th>
+          <th>Destino</th>
+          <th>Valor</th>
+          <th>Taxa</th>
+          <th>Status</th>
+       </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+       <tr>
+          <td>{{ data.id }}</td>
+          <td>{{ data.dataRegistro }}</td>
+          <td>{{ data.dataTransferencia }}</td>
+          <td>{{ data.ctaOrigem }}</td>
+          <td>{{ data.ctaDestino }}</td>
+          <td>{{data.valorTransferencia | currency : 'BRL'}}</td>
+          <td>{{ data.taxaAplicavel }}%</td>
+          <td>
+             <span *ngIf=" data.status == 'OK'">
+                <p-tag severity="success" value="OK"></p-tag>
+             </span>
+             <span *ngIf=" data.status == 'AP'">
+                <p-tag value="A pagar"></p-tag>
+             </span>
+             <span *ngIf=" data.status == 'NOK'">
+                <p-tag severity="danger" value="Failed"></p-tag>
+             </span>
+          </td>
+       </tr>
+    </ng-template>
+</p-table>

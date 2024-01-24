@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+body{ background-color: #f5f5f5; margin: 0px;}
+.wrap{margin-left: 50px; margin-right: 50px; margin-bottom: 120px;}
+.header-wrap{margin-left: 50px; margin-right: 50px;}
+.header-wrap h1 span{color: #64748b;}
+
+.page-footer {
+    footer {
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        height: 60px;
+        background-color: #3b82f6;
+      
+    }
+
+    div{
+        color: #ffffff; padding: 20px; font-weight: bold; font-size: 14px;
+    }
+  }
+.notify-form{
+
+    margin: 0 10px 0 10px ;   
+
+}
+
+.accountsInputStyle{
+    margin-top: 10px; 
+    margin-bottom: 10px;
+}
+
+.accountsInputStyle input{
+    text-transform: uppercase;
+    width: 100%;
+}
+
+/*
+ border: 1px solid #ff0000;
+
+*/

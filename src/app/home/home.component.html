@@ -1,0 +1,29 @@
+<div class="wrap">
+    <p-card header="Home">
+       <div>
+          <table border="0">
+             <tbody>
+                <tr>
+                   <td>Data inicial</td>
+                   <td>Data Final</td>
+                   <td>&nbsp;</td>
+                </tr>
+                <tr>
+                   <td><p-calendar [(ngModel)]="startDate" dateFormat="dd-mm-yy" [iconDisplay]="'input'" [showIcon]="true"></p-calendar></td>
+                   <td><p-calendar [(ngModel)]="endDate" dateFormat="dd-mm-yy" [iconDisplay]="'input'" [showIcon]="true"></p-calendar></td>
+                   <td>
+                      &nbsp;
+                      <p-button type="submit" (click)="submitSerach()" label="Buscar" icon="pi pi-search" iconPos="right"></p-button>
+                      <p-progressSpinner strokeWidth="2" styleClass="w-3rem h-3rem" *ngIf="spinnerProccess"></p-progressSpinner>
+                   </td>
+                </tr>
+             </tbody>
+          </table>
+          <hr>
+          <p-messages [(value)]="messages" [enableService]="false" [closable]="false"></p-messages>
+       </div>
+       <div *ngIf="dataOK">
+          <app-transactions [data]="transactionData"></app-transactions>
+       </div>
+    </p-card>
+ </div>

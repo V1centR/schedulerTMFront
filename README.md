@@ -30,3 +30,16 @@ Após terminado a execução do install digite:
 ```
 
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/vicent-ramos-33954ab5/)
+
+
+## Screenshots
+
+![Screenshot](screenshots/HomeScreenshot.png)
+
+![Screenshot](screenshots/HomeScreenshot2.png)
+
+![Screenshot](screenshots/RegisterScreenshot1.png)
+
+![Screenshot](screenshots/RegisterScreenshot2.png)
+
+![Screenshot](screenshots/RegisterScreenshot3.png)

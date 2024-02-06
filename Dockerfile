@@ -1,31 +1,32 @@
-# Estágio 2: Construir a aplicação Spring Boot
-
 # cd C:\GitProjects\schedulerTMFront docker build -t scheduler .
 
-
-FROM maven:3.8.4-openjdk-11-slim AS spring-build
+# Estágio de compilação
+FROM node:20-alpine AS build
 
 # Instala o Git
-RUN apt-get update && \
-    apt-get install -y git
+RUN apk add --no-cache git
 
+# Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
-RUN git clone https://github.com/V1centR/SchedulerTransferTM.git spring-boot-app
-WORKDIR /app/spring-boot-app
-RUN mvn clean package -DskipTests
 
-# Estágio 1: Construir a aplicação Angular
-FROM node:20 AS angular-build
-WORKDIR /app
-RUN git clone https://github.com/V1centR/schedulerTMFront.git angular-app
-WORKDIR /app/angular-app
+# Copia o arquivo package.json para o diretório de trabalho
+RUN git clone https://github.com/V1centR/schedulerTMFront.git .
+
+WORKDIR /app/schedulerTMFront/
+
+# Instala as dependências do projeto
 RUN npm install
+
+# Compila o projeto Angular
 RUN npm run build --prod
 
-# Estágio 3: Executar as aplicações
-FROM adoptopenjdk/openjdk11:alpine-jre
-WORKDIR /app
-COPY --from=spring-build /app/spring-boot-app/target/*.jar /app/spring-boot-app.jar
-COPY --from=angular-build /app/angular-app/dist/angular-app /app/angular-app
-EXPOSE 8080
-CMD ["java", "-jar", "spring-boot-app.jar"]
+# Estágio de produção
+FROM nginx:1.24.0-alpine
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY ./dist/scheduler-tmfront/browser/* /usr/share/nginx/html/
+
+# Expor a porta 80 para o tráfego da web
+EXPOSE 80
+
+# Comando para iniciar o servidor Nginx
+CMD ["nginx", "-g", "daemon off;"]

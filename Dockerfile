@@ -15,7 +15,7 @@ RUN git clone https://github.com/V1centR/schedulerTMFront.git .
 WORKDIR /app/schedulerTMFront/
 
 # Instala as dependências do projeto
-RUN npm install
+RUN npm ci
 
 # Compila o projeto Angular
 RUN npm run build --prod
@@ -23,7 +23,7 @@ RUN npm run build --prod
 # Estágio de produção
 FROM nginx:1.24.0-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY ./dist/scheduler-tmfront/browser/* /usr/share/nginx/html/
+COPY ./dist/scheduler-tmfront/browser/* /usr/share/nginx/html
 
 # Expor a porta 80 para o tráfego da web
 EXPOSE 80
